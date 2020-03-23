@@ -114,8 +114,9 @@ async def nine_nine(ctx):
 
 @bot.command(name='nuke', help="search doujin ")
 async def nine_nine(ctx, code: str):
-	channel = bot.get_channel(615955484347990019)
 
+	channel = bot.get_channel(615955484347990019)
+	await channel.send("Another Man of Culture I guess..............( ͡° ͜ʖ ͡°)")
 	link = "https://nhentai.net/g/" + code + "/"
 	req = Request(link, headers={'User-Agent': 'Mozilla/5.0'})
 	webpage = urlopen(req).read()
@@ -126,14 +127,25 @@ async def nine_nine(ctx, code: str):
 	size = len(x[0])
 	pageno = int(x[0][:size-6])
 	title = containers_1[0].h1.text
+	sub_title = containers_1[0].h2.text
 	cover = link + "1/"
 	req1 = Request(cover, headers={'User-Agent': 'Mozilla/5.0'})
 	webpage1 = urlopen(req1).read()
 	page_soup1 = soup(webpage1, "html.parser")
 	containers_11 = page_soup1.findAll("div", {"class": "container"})
 	img = containers_11[0].img["src"]
-
-	embed = discord.Embed(title=title, description=str(img), color=0x00ff00)
+	embed = discord.Embed(title=title, description=str(sub_title) , color=0x00ff00)
+	embed.set_thumbnail(url="https://i.redd.it/fkg9yip5yyl21.png")
+	containers_2 = page_soup.findAll("div", {"class": "tag-container field-name"})
+	ank = ''
+	for i in containers_2:
+		x = i.findAll("a")
+		ank = ''
+		for j in x:
+			ank += j.text+","
+		#ank = "\n"
+		embed.add_field(name = "tmp", value=ank, inline=False)
+    	
 	embed.set_image(url=img)
 	message = await channel.send(embed=embed)
 	await message.add_reaction('\u23ee')
@@ -154,7 +166,7 @@ async def nine_nine(ctx, code: str):
 			if str(reaction.emoji) == '\u23ed':
 				return user == ctx.author and str(reaction.emoji) == '\u23ed'
 		try:
-			reaction = await bot.wait_for('reaction_add', timeout= 60.0, check=check1)
+			reaction = await bot.wait_for('reaction_add', timeout= 120.0, check=check1)
 		except asyncio.TimeoutError:
 			#await message.remove_reaction('\u23ee')
 			await channel.send("noob")
@@ -168,12 +180,11 @@ async def nine_nine(ctx, code: str):
 			containers_11 = page_soup1.findAll("div", {"class": "container"})
 			pagei = containers_11[0].img["src"]
 			page=discord.Embed(
-        		title='Page '+str(i),
-        		description='Description',
+        		title='Page '+str(i)+'/'+str(pageno),
         		colour=0x00ff00
     			)
 			page.set_image(url=pagei)
-			await message.edit(embed=page)
+			await message.edit(embed=embed)
 		elif str(reaction[0].emoji) == '\u25c0':
 			if i>1:
 				i-=1
@@ -184,8 +195,7 @@ async def nine_nine(ctx, code: str):
 				containers_11 = page_soup1.findAll("div", {"class": "container"})
 				pagei = containers_11[0].img["src"]
 				page=discord.Embed(
-        			title='Page '+str(i),
-        			description='Description',
+        			title='Page '+str(i)+'/'+str(pageno),
         			colour=0x00ff00
     				)
 				page.set_image(url=pagei)
@@ -200,8 +210,7 @@ async def nine_nine(ctx, code: str):
 				containers_11 = page_soup1.findAll("div", {"class": "container"})
 				pagei = containers_11[0].img["src"]
 				page=discord.Embed(
-        			title='Page '+str(i),
-        			description='Description',
+        			title='Page '+str(i)+'/'+str(pageno),
         			colour=0x00ff00
     				)
 				page.set_image(url=pagei)
@@ -215,8 +224,7 @@ async def nine_nine(ctx, code: str):
 			containers_11 = page_soup1.findAll("div", {"class": "container"})
 			pagei = containers_11[0].img["src"]
 			page=discord.Embed(
-        		title='Page '+str(i),
-        		description='Description',
+        		title='Page '+str(i)+'/'+str(pageno),
         		colour=0x00ff00
     			)
 			page.set_image(url=pagei)
