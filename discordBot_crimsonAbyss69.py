@@ -1,52 +1,3 @@
-'''import os
-import random
-import discord
-from dotenv import load_dotenv
-
-load_dotenv()
-TOKEN = os.getenv('DISCORD_TOKEN')
-GUILD = os.getenv('DISCORD_GUILD')
-
-client = discord.Client()
-
-@client.event
-async def on_ready():
-	guild = discord.utils.get(client.guilds, name=GUILD)
-	print("{} is connected to the following guild:\n{}(id: {})".format(client.user, guild.name, guild.id))
-	members = '\n - '.join([member.name for member in guild.members])
-	print("Guild Members:\n - {}".format(members))
-
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
-    brooklyn_99_quotes = [
-        'I\'m the human form of the 💯 emoji.',
-        'Bingpot!',
-        (
-            'Cool. Cool cool cool cool cool cool cool, '
-            'no doubt no doubt no doubt no doubt.'
-        ),
-    ]
-
-    if message.content == '99!':
-        response = random.choice(brooklyn_99_quotes)
-        await message.channel.send(response)
-    elif message.content == 'raise-exception':
-    	raise discord.DiscordException
-
-@client.event
-async def on_error(event, *args, **kwargs):
-    with open('err.log', 'a') as f:
-        if event == 'on_message':
-            f.write("Unhandled message: {}\n".format(args[0]))
-        else:
-            raise
-
-client.run(TOKEN)
-'''
-# bot.py
 import re
 import os
 import random
@@ -74,39 +25,71 @@ TOKEN = dotenv["DISCORD_TOKEN"]
 
 bot = commands.Bot(command_prefix='+')
 
-@bot.command(name='ca_skills', help="crimson abyss skills ")
-async def nine_nine(ctx):
-	translator = Translator()
-	my_url = "https://wiki.biligame.com/zspms/%E9%9C%B2%E8%A5%BF%E4%BA%9A%C2%B7%E6%B7%B1%E7%BA%A2%E4%B9%8B%E6%B8%8A"
-	uClient = ur(my_url)
-	page_html = uClient.read()
-	uClient.close()
-	page_soup = soup(page_html, "html.parser")
-	containers_1 = page_soup.findAll("div", {"class": "tj-left"})
-	x = containers_1[0].findAll("table", {"class": "wikitable"})
-	y = x[0].findAll("td")
-	count = 0
-	st = ""
-	for i in y:
-		a = translator.translate(str(i.text))
-		st += a.text + "\n"
-		count += 1
-		if count%3 == 0:
-			await ctx.send("```{}```".format(st))
-			st = ""
+@bot.command(name='skills', help="skills of characters`")
+async def nine_nine(ctx, code: str):
+	if code == "Lucia Crimson Abyss":
+		translator = Translator()
+		my_url = "https://wiki.biligame.com/zspms/%E9%9C%B2%E8%A5%BF%E4%BA%9A%C2%B7%E6%B7%B1%E7%BA%A2%E4%B9%8B%E6%B8%8A"
+		uClient = ur(my_url)
+		page_html = uClient.read()
+		uClient.close()
+		page_soup = soup(page_html, "html.parser")
+		containers_1 = page_soup.findAll("div", {"class": "tj-left"})
+		x = containers_1[0].findAll("table", {"class": "wikitable"})
+		y = x[0].findAll("td")
+		count = 0
+		st = ""
+		for i in y:
+			a = translator.translate(str(i.text))
+			st += a.text + "\n"
+			count += 1
+			if count%3 == 0:
+				await ctx.send("```{}```".format(st))
+				st = ""
 
 
 
-@bot.command(name='ca_pic', help="crimson abyss lucia picture ")
-async def nine_nine(ctx):
+@bot.command(name='pics', help="pictures of characters ")
+async def nine_nine(ctx, code: str):
 	channel = bot.get_channel(615955484347990019)
-	file = discord.File('/home/ankanb49/Downloads/luciaS2.png', filename="luciaS2.png")
-	embed = discord.Embed(title="Lucia Crimson Abyss", description="Lucia's S rank character", color=0x00ff00)
-	embed.set_image(url="attachment://luciaS2.png")
-	embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
-	await channel.send(file=file, embed=embed)
-	user = bot.get_user(514618549478883329)
-	await user.send(file=discord.File('/home/ankanb49/Downloads/luciaS2.png'))
+	if code == "Lucia":
+		names = """
+		There are 3 types of Lucia battlesuits. Choose one by replying with the name...
+1. Crimson Abyss
+2. Dawn
+3. Red Lotus
+		"""
+		choice_embed = discord.Embed(title = names)
+		await channel.send(embed=choice_embed)
+		def check(m):
+			if m.content == "Crimson Abyss":
+				return m
+			elif m.content == "Dawn":
+				return m.content == "Dawn" and m.channel == channel
+			elif m.content == "Red Lotus":
+				return m.content == "Red Lotus" and m.channel == channel
+
+		msg = await bot.wait_for('message', check=check)
+		if msg.content == "Crimson Abyss":
+			file = discord.File('/home/ankanb49/STUFFFFFFF!!!!!!!!/python_works/discord bot/LuciaS.png', filename="LuciaS.png")
+			embed = discord.Embed(title="Lucia Crimson Abyss", description="Lucia's S rank character", color=0x00ff00)
+			embed.set_image(url="attachment://LuciaS.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		elif msg.content == "Dawn":
+			file = discord.File('/home/ankanb49/STUFFFFFFF!!!!!!!!/python_works/discord bot/LuciaA.png', filename="LuciaA.png")
+			embed = discord.Embed(title="Lucia Dawn", description="Lucia's A rank character", color=0x00ff00)
+			embed.set_image(url="attachment://LuciaA.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		elif msg.content == "Red Lotus":
+			file = discord.File('/home/ankanb49/STUFFFFFFF!!!!!!!!/python_works/discord bot/LuciaB.png', filename="LuciaB.png")
+			embed = discord.Embed(title="Lucia Red Lotus", description="Lucia's B rank character", color=0x00ff00)
+			embed.set_image(url="attachment://LuciaB.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		#user = bot.get_user(514618549478883329)
+		#await user.send(file=discord.File('/home/ankanb49/Downloads/luciaS2.png'))
 
 
 
@@ -230,52 +213,4 @@ async def nine_nine(ctx, code: str):
 			page.set_image(url=pagei)
 			await message.edit(embed=page)
 
-@bot.command()
-async def on_message(ctx):
-	channel = bot.get_channel(615955484347990019)
-	if ctx == "fuck you":
-		await channel.send("I am not ur mom.. Fuck her dipshit!!!!!!!!!")
-
-
-
-
-
-'''
-        def check2(reaction, user):
-        	return user == ctx.author and str(reaction.emoji) == '\u25c0'
-        try:
-        	reaction1 = await client.wait_for('reaction_add', timeout = 20.0, check = check2)
-        except asyncio.TimeoutError:
-        	await message.remove_reaction(reaction1[0].emoji, reaction1[1])
-        else:
-        	if i>0:
-        		i -= 1
-        		await message.edit(embed = pages[i])
-
-        if res==None:
-            break
-        if str(res[1])!="crimsonAbyss69#7694": #Example: 'MyBot#1111'
-            emoji=str(res[0].emoji)
-            await client.remove_reaction(message,res[0].emoji,res[1])
-
-    await client.clear_reactions(message)
-
-
-@client.event
-async def on_message(message):
-    if message.content.startswith('$thumb'):
-        channel = message.channel
-        await channel.send('Send me that 👍 reaction, mate')
-        while True:
-	        def check(reaction, user):
-	            return user == message.author and str(reaction.emoji) == '👍'
-
-	        try:
-	            reaction = await client.wait_for('reaction_add', timeout=60.0, check=check)
-	        except asyncio.TimeoutError:
-	            await channel.send('👎')
-	        else:
-	            await channel.send('👍')
-client.run(TOKEN)
-'''
 bot.run(TOKEN)
