@@ -55,39 +55,249 @@ async def nine_nine(ctx, code: str):
 	if code == "Lucia":
 		names = """
 		There are 3 types of Lucia battlesuits. Choose one by replying with the name...
-1. Crimson Abyss
-2. Dawn
-3. Red Lotus
+1. Lucia Crimson Abyss
+2. Lucia Dawn
+3. Lucia Red Lotus
 		"""
 		choice_embed = discord.Embed(title = names)
 		await channel.send(embed=choice_embed)
 		def check(m):
-			if m.content == "Crimson Abyss":
+			if m.content == "Lucia Crimson Abyss":
 				return m
-			elif m.content == "Dawn":
-				return m.content == "Dawn" and m.channel == channel
-			elif m.content == "Red Lotus":
-				return m.content == "Red Lotus" and m.channel == channel
+			elif m.content == "Lucia Dawn":
+				return m
+			elif m.content == "Lucia Red Lotus":
+				return m
 
 		msg = await bot.wait_for('message', check=check)
-		if msg.content == "Crimson Abyss":
-			file = discord.File('/home/ankanb49/STUFFFFFFF!!!!!!!!/python_works/discord bot/LuciaS.png', filename="LuciaS.png")
+		if msg.content == "Lucia Crimson Abyss":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/lucia/LuciaS.png', filename="LuciaS.png")
 			embed = discord.Embed(title="Lucia Crimson Abyss", description="Lucia's S rank character", color=0x00ff00)
 			embed.set_image(url="attachment://LuciaS.png")
 			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
 			await channel.send(file=file, embed=embed)
-		elif msg.content == "Dawn":
-			file = discord.File('/home/ankanb49/STUFFFFFFF!!!!!!!!/python_works/discord bot/LuciaA.png', filename="LuciaA.png")
+		elif msg.content == "Lucia Dawn":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/lucia/LuciaA.png', filename="LuciaA.png")
 			embed = discord.Embed(title="Lucia Dawn", description="Lucia's A rank character", color=0x00ff00)
 			embed.set_image(url="attachment://LuciaA.png")
 			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
 			await channel.send(file=file, embed=embed)
-		elif msg.content == "Red Lotus":
-			file = discord.File('/home/ankanb49/STUFFFFFFF!!!!!!!!/python_works/discord bot/LuciaB.png', filename="LuciaB.png")
+		elif msg.content == "Lucia Red Lotus":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/lucia/LuciaB.png', filename="LuciaB.png")
 			embed = discord.Embed(title="Lucia Red Lotus", description="Lucia's B rank character", color=0x00ff00)
 			embed.set_image(url="attachment://LuciaB.png")
 			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
 			await channel.send(file=file, embed=embed)
+	elif code == "Nanami":
+		names = """
+		There are 2 types of Lucia battlesuits. Choose one by replying with the name...
+1. Nanami Storm
+2. Nanami Pulse
+		"""
+		choice_embed = discord.Embed(title = names)
+		await channel.send(embed=choice_embed)
+		def check(m):
+			if m.content == "Nanami Storm":
+				return m
+			elif m.content == "Nanami Pulse":
+				return m
+
+		msg = await bot.wait_for('message', check=check)
+		if msg.content == "Nanami Storm":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/nanami/NanamiA.png', filename="NanamiA.png")
+			embed = discord.Embed(title="Nanami Storm", description="Nanami's A rank character", color=0x00ff00)
+			embed.set_image(url="attachment://NanamiA.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		elif msg.content == "Nanami Pulse":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/nanami/NanamiS.png', filename="NanamiS.png")
+			embed = discord.Embed(title="Nanami Pulse", description="Nanami's S rank character", color=0x00ff00)
+			embed.set_image(url="attachment://NanamiS.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+	elif code == "Liv":
+		names = """
+		There are 3 types of Liv battlesuits. Choose one by replying with the name...
+1. Liv Hope
+2. Liv Streamer
+3. Liv Eclipse
+		"""
+		choice_embed = discord.Embed(title = names)
+		await channel.send(embed=choice_embed)
+		def check(m):
+			if m.content == "Liv Hope":
+				return m
+			elif m.content == "Liv Streamer":
+				return m
+			elif m.content == "Liv Eclipse":
+				return m
+
+		msg = await bot.wait_for('message', check=check)
+		if msg.content == "Liv Hope":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/liv/LivS.png', filename="LivS.png")
+			embed = discord.Embed(title="Liv Hope", description="Liv's S rank character", color=0x00ff00)
+			embed.set_image(url="attachment://LivS.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		elif msg.content == "Liv Streamer":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/liv/LivA.png', filename="LivA.png")
+			embed = discord.Embed(title="Liv Streamer", description="Liv's A rank character", color=0x00ff00)
+			embed.set_image(url="attachment://LivA.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		elif msg.content == "Liv Eclipse":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/liv/LivB.png', filename="LivB.png")
+			embed = discord.Embed(title="Liv Eclipse", description="Liv's B rank character", color=0x00ff00)
+			embed.set_image(url="attachment://LivB.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+	elif code == "Lee":
+		names = """
+		There are 2 types of Lee battlesuits. Choose one by replying with the name...
+1. Lee Ghostfire
+2. Lee Random numbers
+		"""
+		choice_embed = discord.Embed(title = names)
+		await channel.send(embed=choice_embed)
+		def check(m):
+			if m.content == "Lee Ghostfire":
+				return m
+			elif m.content == "Lee Random numbers":
+				return m
+
+		msg = await bot.wait_for('message', check=check)
+		if msg.content == "Lee Random numbers":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/lee/LeeS.png', filename="LeeS.png")
+			embed = discord.Embed(title="Lee Random numbers", description="Lee's S rank character", color=0x00ff00)
+			embed.set_image(url="attachment://LeeS.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		elif msg.content == "Lee Ghostfire":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/lee/LeeA.png', filename="LeeA.png")
+			embed = discord.Embed(title="Lee Ghostfire", description="Lee's A rank character", color=0x00ff00)
+			embed.set_image(url="attachment://LeeA.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+	elif code == "Kamui":
+		names = """
+		There are 2 types of Kamui battlesuits. Choose one by replying with the name...
+1. Kamui Heavy power
+2. Kamui Dark Energy
+		"""
+		choice_embed = discord.Embed(title = names)
+		await channel.send(embed=choice_embed)
+		def check(m):
+			if m.content == "Kamui Heavy power":
+				return m
+			elif m.content == "Kamui Dark Energy":
+				return m
+
+		msg = await bot.wait_for('message', check=check)
+		if msg.content == "Kamui Dark Energy":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/kamui/KamuiS.png', filename="KamuiS.png")
+			embed = discord.Embed(title="Kamui Dark Energy", description="Kamui's S rank character", color=0x00ff00)
+			embed.set_image(url="attachment://KamuiS.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		elif msg.content == "Kamui Heavy power":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/kamui/KamuiA.png', filename="KamuiA.png")
+			embed = discord.Embed(title="Kamui Heavy power", description="Kamui's A rank character", color=0x00ff00)
+			embed.set_image(url="attachment://KamuiA.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+	elif code == "Karen":
+		names = """
+		There are 2 types of Karenina battlesuits. Choose one by replying with the name...
+1. Karenina Amber
+2. Karenina Burst
+		"""
+		choice_embed = discord.Embed(title = names)
+		await channel.send(embed=choice_embed)
+		def check(m):
+			if m.content == "Karenina Amber":
+				return m
+			elif m.content == "Karenina Burst":
+				return m
+
+		msg = await bot.wait_for('message', check=check)
+		if msg.content == "Karenina Amber":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/karen/KarenS.png', filename="KarenS.png")
+			embed = discord.Embed(title="Karenina Amber", description="Karen's S rank character", color=0x00ff00)
+			embed.set_image(url="attachment://KarenS.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		elif msg.content == "Karenina Burst":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/karen/KarenA.png', filename="KarenA.png")
+			embed = discord.Embed(title="Karenina Burst", description="Karen's A rank character", color=0x00ff00)
+			embed.set_image(url="attachment://KarenA.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+	elif code == "Watanabe":
+		names = """
+		There are 2 types of Watanabe battlesuits. Choose one by replying with the name...
+1. Watanabe NightBlade
+2. Watanabe Phoenix Star
+		"""
+		choice_embed = discord.Embed(title = names)
+		await channel.send(embed=choice_embed)
+		def check(m):
+			if m.content == "Watanabe NightBlade":
+				return m
+			elif m.content == "Watanabe Phoenix Star":
+				return m
+
+		msg = await bot.wait_for('message', check=check)
+		if msg.content == "Watanabe NightBlade":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/watanabe/WataA.png', filename="WataA.png")
+			embed = discord.Embed(title="Watanabe NightBlade", description="Watanabe's A rank character", color=0x00ff00)
+			embed.set_image(url="attachment://WataA.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		elif msg.content == "Watanabe Phoenix Star":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/watanabe/WataA2.png', filename="WataA2.png")
+			embed = discord.Embed(title="Watanabe Phoenix Star", description="Watanabe's A rank character", color=0x00ff00)
+			embed.set_image(url="attachment://WataA2.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+	elif code == "Bianca":
+		names = """
+		There are 2 types of Bianca battlesuits. Choose one by replying with the name...
+1. Bianca Zero
+2. Bianca Truth
+		"""
+		choice_embed = discord.Embed(title = names)
+		await channel.send(embed=choice_embed)
+		def check(m):
+			if m.content == "Bianca Zero":
+				return m
+			elif m.content == "Bianca Truth":
+				return m
+
+		msg = await bot.wait_for('message', check=check)
+		if msg.content == "Bianca Truth":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/bianca/BiancaS.png', filename="BiancaS.png")
+			embed = discord.Embed(title="Bianca Truth", description="Bianca's S rank character", color=0x00ff00)
+			embed.set_image(url="attachment://BiancaS.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+		elif msg.content == "Bianca Zero":
+			file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/bianca/BiancaA.png', filename="BiancaA.png")
+			embed = discord.Embed(title="Bianca Zero", description="Bianca's A rank character", color=0x00ff00)
+			embed.set_image(url="attachment://BiancaA.png")
+			embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+			await channel.send(file=file, embed=embed)
+	elif code == "Ayla":
+		file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/ayla/AylaA.png', filename="AylaA.png")
+		embed = discord.Embed(title="Ayla ", description="Ayla's A rank character", color=0x00ff00)
+		embed.set_image(url="attachment://AylaA.png")
+		embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+		await channel.send(file=file, embed=embed)
+	elif code == "Sophia":
+		file = discord.File('/home/ankanb49/STUFFFFFFF/python_works/discord bot/sophia/SophiaA.png', filename="SophiaA.png")
+		embed = discord.Embed(title="Sophia", description="Sophia's A rank character", color=0x00ff00)
+		embed.set_image(url="attachment://LuciaS.png")
+		embed.add_field(name="Comments", value="Don't fap to her, she will cut ur nut", inline=False)
+		await channel.send(file=file, embed=embed)
 		#user = bot.get_user(514618549478883329)
 		#await user.send(file=discord.File('/home/ankanb49/Downloads/luciaS2.png'))
 
