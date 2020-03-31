@@ -10,6 +10,7 @@ from urllib.request import urlopen as ur
 import json
 from googletrans import Translator
 from urllib.request import Request, urlopen
+import mysql.connector
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
@@ -47,6 +48,71 @@ async def nine_nine(ctx, code: str):
 				await ctx.send("```{}```".format(st))
 				st = ""
 
+
+@bot.command(name='arms', help='quick summary of arms')
+async def nine_nine(ctx):
+	channel = bot.get_channel(615955484347990019)
+	names = """
+1. Shadow Strike-Reverse
+2. Zero Degree Calibration
+3. Chimera Retrograde
+4. Zero Form
+5. Sirius
+6. Red Sakura
+7. Ray Mill
+8. God Giver
+9. Dragon Wind
+10. Wei Zi
+11. Soul Slayer
+12. Frenzied Fusion Canon
+13. Leitning
+14. Great God Power
+15. Calender
+16. Red Lotus Fanatic
+17. Machine Rhyme
+18. Wolf Eater
+19. Nuclear-based red dragon
+20. Sain
+21. Pitch Black"""
+	choice_embed = discord.Embed(title = "Following are the weapons in Punishing Gray Raven which come under 6-star rarity:", description = names)
+	await channel.send(embed=choice_embed)
+	def check(m):
+		if m.content == "Shadow Strike-Reverse":
+			return m
+	msg = await bot.wait_for('message', check=check)
+	if msg.content == "Shadow Strike-Reverse":
+		title = msg.content
+		mydb = mysql.connector.connect(
+    		host="localhost",
+    		user="root",
+    		passwd="password",
+    		database="Punishing Gray Raven",
+	   		auth_plugin='mysql_native_password'
+		)
+		mycursor = mydb.cursor()
+		mycursor.execute("SELECT * FROM Arms where Name = '{}';".format(title))
+		myresult = mycursor.fetchall()
+		name = myresult[0][0]
+		link = myresult[0][1]
+		uClient = ur(link)
+		page_html = uClient.read()
+		uClient.close()
+		page_soup = soup(page_html, "html.parser")
+		con = page_soup.findAll("table", {"class": "wikitable"})
+		ans = con[0].findAll("img", {"class":"img-kk"})
+		url = ans[0]["src"]
+		wtype = myresult[0][2]
+		rare = myresult[0][3]
+		rr = ""
+		for i in range(rare):
+			rr += "✰"
+		skill = myresult[0][4]
+		embed = discord.Embed(title=name, description=" Details", color=0x00ff00)
+		embed.set_thumbnail(url=url)
+		embed.add_field(name="Type", value=wtype, inline=False)
+		embed.add_field(name="Rarity", value=rr, inline=False)
+		embed.add_field(name="Skills", value=skill, inline=False)
+		await channel.send(embed=embed)
 
 
 @bot.command(name='pics', help="pictures of characters ")
