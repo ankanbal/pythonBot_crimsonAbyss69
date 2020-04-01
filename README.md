@@ -8,3 +8,5 @@ With every work being updated basically I will update more functionalities of th
 3. +arts {character name} without braces to get the character image
 4. +arms then next message as name of the arm to the get the weapon data
 5. (on friends demand) +nuke {6 digit code} without braces to read a doujin (will leave that upto your research what doujin is)
+
+Next work:- will be working on updating database for memories and will make a customized gif system
