@@ -23,7 +23,7 @@ dotenv = Dotenv(os.path.join(os.path.dirname("/home/pi/test_programs/python_bot/
 os.environ.update(dotenv)
 TOKEN = dotenv["DISCORD_TOKEN"]
 '''
-
+password = ""
 bot = commands.Bot(command_prefix='+')
 
 @bot.command(name='skills', help="skills of characters")
@@ -83,7 +83,7 @@ async def nine_nine(ctx):
 	mydb = mysql.connector.connect(
     	host="localhost",
     	user="root",
-    	passwd="",
+    	passwd=password,
     	database="Punishing Gray Raven",
 	  		auth_plugin='mysql_native_password'
 	)
@@ -111,6 +111,73 @@ async def nine_nine(ctx):
 	embed.add_field(name="Rarity", value=rr, inline=False)
 	embed.add_field(name="Skills", value=skill, inline=False)
 	await channel.send(embed=embed)
+
+
+
+@bot.command(name='memory', help='quick summary of memories')
+async def nine_nine(ctx):
+	channel = bot.get_channel(615955484347990019)
+	names = """
+1. Guinnea
+2. Hannah
+3. Einstein
+4. Frederick
+5. Adolf
+6. Condelina
+7. Leonardo
+8. Shakespeare
+9. Patton
+10. Catherine
+11. Heisen
+12. Basilone
+13. Fellete
+14. Darwin"""
+	choice_embed = discord.Embed(title = "Following are the memories in Punishing Gray Raven which come under 6-star rarity:", description = names)
+	await channel.send(embed=choice_embed)
+	def check(m):
+		return m
+	msg = await bot.wait_for('message', check=check)
+	title = msg.content
+	mydb = mysql.connector.connect(
+    	host="localhost",
+    	user="root",
+    	passwd=password,
+    	database="Punishing Gray Raven",
+	  		auth_plugin='mysql_native_password'
+	)
+	mycursor = mydb.cursor()
+	mycursor.execute("SELECT * FROM Memory where Name = '{}';".format(title))
+	myresult = mycursor.fetchall()
+	name = myresult[0][0]
+	link = myresult[0][1]
+	uClient = ur(link)
+	page_html = uClient.read()
+	uClient.close()
+	page_soup = soup(page_html, "html.parser")
+	con = page_soup.findAll("table", {"class": "wikitable"})
+	ans = con[0].findAll("img", {"class":"img-kk"})
+	url = ans[0]["src"]
+	rarity = myresult[0][2]
+	two_piece_eff = myresult[0][3]
+	four_piece_eff = myresult[0][4]
+	hp = myresult[0][5]
+	crit = myresult[0][6]
+	atk = myresult[0][7]
+	Def = myresult[0][8]
+	rr = ""
+	for i in range(rarity):
+		rr += "✰"
+	embed = discord.Embed(title=name, description=" Details", color=0x00ff00)
+	embed.set_thumbnail(url=url)
+	embed.add_field(name="Rarity", value=rr, inline=False)
+	embed.add_field(name="2-piece effect", value=two_piece_eff, inline=False)
+	embed.add_field(name="4-piece effect", value=four_piece_eff, inline=False)
+	embed.add_field(name="HP", value=hp, inline=True)
+	embed.add_field(name="CRIT", value=crit, inline=True)
+	embed.add_field(name="ATK", value=atk, inline=True)
+	embed.add_field(name="DEF", value=Def, inline=True)
+	await channel.send(embed=embed)
+
 
 
 @bot.command(name='pics', help="pictures of characters ")
